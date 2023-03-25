@@ -65,9 +65,9 @@ int _printf(const char * const format, ...)
 	{
 		_putchar(format[i]);
 
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i +1] == '%' && format[i + 1] != '\0')
 		{
-			switch (format[i + 1])
+			switch (format[i + 2])
 			{
 				case 'c':
 				_putchar(va_arg(arg, int));
@@ -77,7 +77,7 @@ int _printf(const char * const format, ...)
 				if (str == NULL || *str == '\0')
 				{printf("(nill)");
 					break; }
-				printf("%s", str);
+				_printf(str);
 				break;
 				case  'i':
 				printf("%i", va_arg(arg, int));
@@ -86,6 +86,7 @@ int _printf(const char * const format, ...)
 				printf("%f", va_arg(arg, double));
 				break;
 			}
+			i +=2;
 		}
 		i++;
 	}
