@@ -71,16 +71,15 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					_putchar(va_arg(arg, int));
-					len++;
+					/* len++; */
 				break;
 				case  's':
 					str = va_arg(arg, char*);
 					if (str != NULL && *str != '\0')
-						len = len + _put_string(str) - 1;
+						len += _put_string(str) - 1;
 				break;
 				case '%':
-					_putchar(37);
-					len++;
+					len += _putchar(37) - 1;
 				break;
 			}
 			i = i + 2;
@@ -93,5 +92,6 @@ int _printf(const char *format, ...)
 		}
 	}
 	va_end(arg);
+	/* printf("%i\n", len); */
 	return (len);
 }
