@@ -70,8 +70,7 @@ int _printf(const char *format, ...)
 			switch (format[i + 1])
 			{
 				case 'c':
-					_putchar(va_arg(arg, int));
-					len++;
+					len += _putchar(va_arg(arg, int)) - 1;
 				break;
 				case  's':
 					str = va_arg(arg, char*);
