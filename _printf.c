@@ -117,20 +117,28 @@ int _printf(const char *format, ...)
                         format++;
                         switch (*format)
                         {
-                        case 'c':
-                                len += _putchar(va_arg(args, int));
-                        break;
-                        case 's':
-                                len += _put_string(va_arg(args, char *));
-                        break;
-                        case '%':
-                                len += _putchar('%');
-                        break;
-                        default:
-                                len += _putchar('%');
-                                len += _putchar(*format);
-                        break;
-                        }
+				case 'c':
+				len += _putchar(va_arg(args, int));
+				break;
+				case 's':
+				len += _put_string(va_arg(args, char *));
+				break;
+				case '%':
+				len += _putchar('%');
+				break;
+				case  'i':
+				intg = va_arg(arg, int);
+				len += _print_number(intg);
+				break;
+				case  'd':
+				intg = va_arg(arg, int);
+				len += _print_number(intg);
+				break;
+				default:
+				len += _putchar('%');
+				len += _putchar(*format);
+				break;
+			}
                 }
                 else
                 {
