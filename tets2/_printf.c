@@ -44,6 +44,30 @@ int  _put_string(char *str)
 	return (i);
 }
 
+
+int _print_number(int n)
+{
+    int num_printed = 0;
+    unsigned int num_abs = n;
+
+    if (n < 0)
+    {
+        num_printed += _putchar('-');
+        num_abs = -n;
+    }
+
+    if (num_abs / 10)
+    {
+        num_printed += _print_number(num_abs / 10);
+    }
+
+    num_printed += _putchar((num_abs % 10) + '0');
+
+    return num_printed;
+}
+
+
+
 /**
  * _printf - output function
  * Description:''Write a function that produces output according to a format.
@@ -56,18 +80,18 @@ int  _put_string(char *str)
 int _printf(const char *format, ...)
 {
 	va_list arg;
-	int i, len;
+	int n, len, intg;
 	char *str;
 
-	i = len = 0;
+	n = len = 0;
 	va_start(arg, format);
 	if (format == NULL || ((format[0] == '%' && !format[1])))
 	return (-1);
-	while (format[i] != '\0' && format[i] != '\n')
+	while (format[n] != '\0' && format[n] != '\n')
 	{
-		if (format[i] == '%' && format[i + 1])
+		if (format[n] == '%' && format[n + 1])
 		{
-			switch (format[i + 1])
+			switch (format[n + 1])
 			{
 				case 'c':
 					len += _putchar(va_arg(arg, int));
@@ -80,17 +104,25 @@ int _printf(const char *format, ...)
 				case '%':
 					len += _putchar(37);
 				break;
+				 case  'i':
+                                         intg = va_arg(arg, int);
+                                        len += _print_number(intg);
+                                break;
+				 case  'd':
+                                        intg = va_arg(arg, int);
+                                        len += _print_number(intg);
+                                break;
 			}
-			i = i + 2;
+			n = n + 2;
 		}
 		else
 		{
-			_putchar(format[i]);
+			_putchar(format[n]);
 			len++;
-			i++;
+			n++;
 		}
 	}
-	if (format[i] == '\n')
+	if (format[n] == '\n')
 	{len++; }
 		_putchar('\n');
 	va_end(arg);

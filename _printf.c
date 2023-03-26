@@ -111,9 +111,12 @@ int _printf(const char *format, ...)
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (format[i] == '\n')
 	{len++; }
 		_putchar('\n');
+=======
+>>>>>>> 0d76f1304e4139537920347b27730534023a8dfc
 =======
 >>>>>>> 0d76f1304e4139537920347b27730534023a8dfc
 	va_end(arg);
