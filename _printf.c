@@ -91,7 +91,7 @@ int _printf(const char *format, ...)
 		}
 	}
 	if (format[i] == '\n')
-		len++;
+	{len++; }
 		_putchar('\n');
 	va_end(arg);
 	return (len);
