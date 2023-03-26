@@ -36,7 +36,7 @@ int  _put_string(char *str)
 {
 	int i = 0;
 
-	while (str[i] != '\0')
+	while (str[i] != '\0' && str[i] != '\n')
 	{
 		_putchar(str[i]);
 		i++;
@@ -63,22 +63,22 @@ int _printf(const char *format, ...)
 	va_start(arg, format);
 	if (format == NULL || ((format[0] == '%' && !format[1])))
 	return (-1);
-	while (format[i])
+	while (format[i] != '\0' && format[i] != '\n')
 	{
 		if (format[i] == '%' && format[i + 1])
 		{
 			switch (format[i + 1])
 			{
 				case 'c':
-					len += _putchar(va_arg(arg, int)) - 1;
+					len += _putchar(va_arg(arg, int));
 				break;
 				case  's':
 					str = va_arg(arg, char*);
 					if (str != NULL && *str != '\0')
-						len += _put_string(str) - 1;
+						len += _put_string(str);
 				break;
 				case '%':
-					len += _putchar(37) - 1;
+					len += _putchar(37);
 				break;
 			}
 			i = i + 2;
@@ -90,7 +90,9 @@ int _printf(const char *format, ...)
 			i++;
 		}
 	}
+	if (format[i] == '\n')
+		len++;
+		_putchar('\n');
 	va_end(arg);
-	/* printf("%i\n", len); */
 	return (len);
 }
