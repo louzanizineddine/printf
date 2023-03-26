@@ -44,24 +44,6 @@ int  _put_string(char *str)
 	return (i);
 }
 
-
-/**
- * test_edge_cases - test some edge cases
- * Description: ptest some edge cases
- * @format: the input string
- *
- * Return: 1 if there is an edge case 0 otherwise
-*/
-
-int test_edge_cases(const char *format)
-{
-	if (format == NULL || ((format[0] == '%' && !format[1])))
-	return (1);
-	if ((format[0] == '%' && format[1] == ' ' && !format[2]))
-	return (1);
-
-	return (0);
-}
 /**
  * _printf - output function
  * Description:''Write a function that produces output according to a format.
@@ -79,11 +61,9 @@ int _printf(const char *format, ...)
 
 	i = len = 0;
 	va_start(arg, format);
-	if (test_edge_cases(format))
-	{
-		return (-1);
-	}
-	while (format[i] != '\0')
+	if (format == NULL || ((format[0] == '%' && !format[1])))
+	return (-1);
+	while (format[i] != '\0' && format[i] != '\n')
 	{
 		if (format[i] == '%' && format[i + 1])
 		{
@@ -110,12 +90,9 @@ int _printf(const char *format, ...)
 			i++;
 		}
 	}
-<<<<<<< HEAD
 	if (format[i] == '\n')
 	{len++; }
 		_putchar('\n');
-=======
->>>>>>> 0d76f1304e4139537920347b27730534023a8dfc
 	va_end(arg);
 	return (len);
 }
