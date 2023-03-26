@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
+
 /**
  *  _strlen - output function
  *
@@ -14,14 +15,15 @@
  */
 int _strlen(char *s)
 {
-	int len = 0;
+        int len = 0;
 
-	while (*s != '\0')
-	{
-		++s;
-		len++;
-	}
-	return (len);
+        while (*s != '\0')
+        {
+                ++s;
+                len++;
+        }
+        return (len);
+
 }
 
 /**
@@ -34,14 +36,15 @@ int _strlen(char *s)
 
 int  _put_string(char *str)
 {
-	int i = 0;
+        int i = 0;
 
-	while (str[i] != '\0' && str[i] != '\n')
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	return (i);
+        while (str[i] != '\0' && str[i] != '\n')
+        {
+                _putchar(str[i]);
+                i++;
+        }
+        return (i);
+
 }
 
 
@@ -51,16 +54,45 @@ int  _put_string(char *str)
  * @format: the input string
  *
  * Return: 1 if there is an edge case 0 otherwise
+
 */
 
 int test_edge_cases(const char *format)
 {
-	if (format == NULL || ((format[0] == '%' && !format[1])))
-	return (1);
-	if ((format[0] == '%' && format[1] == ' ' && !format[2]))
-	return (1);
+        if (format == NULL || ((format[0] == '%' && !format[1])))
+        return (1);
+        if ((format[0] == '%' && format[1] == ' ' && !format[2]))
+        return (1);
 
-	return (0);
+        return (0);
+}
+/**
+ * test_odd_number_of_percentages- test some edge cases
+ * Description: if the number of percantages is odd we return -1
+ * @format: the input string
+ *
+ * Return: 1 if there is an edge case 0 otherwise
+
+ */
+
+int test_odd_number_of_percentages(const char *format)
+{
+        int number_of_percentage = 0;
+        int i = 0;
+
+        while (format[i] != '\0')
+        {
+                if (format[i] == '%')
+                {
+                        number_of_percentage++;
+                }
+                i++;
+        }
+        if (number_of_percentage % 2 == 1)
+        {
+                return (1);
+        }
+        return (0);
 }
 /**
  * _printf - output function
@@ -73,52 +105,39 @@ int test_edge_cases(const char *format)
  */
 int _printf(const char *format, ...)
 {
-	va_list arg;
-	int i, len;
-	char *str;
+        va_list args;
+        int len = 0;
 
-	i = len = 0;
-	va_start(arg, format);
-	if (test_edge_cases(format))
-	{
-		return (-1);
-	}
-	while (format[i] != '\0')
-	{
-		if (format[i] == '%' && format[i + 1])
-		{
-			switch (format[i + 1])
-			{
-				case 'c':
-					len += _putchar(va_arg(arg, int));
-				break;
-				case  's':
-					str = va_arg(arg, char*);
-					if (str != NULL && *str != '\0')
-						len += _put_string(str);
-				break;
-				case '%':
-					len += _putchar(37);
-				break;
-			}
-			i = i + 2;
-		}
-		else
-		{
-			_putchar(format[i]);
-			len++;
-			i++;
-		}
-	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	if (format[i] == '\n')
-	{len++; }
-		_putchar('\n');
-=======
->>>>>>> 0d76f1304e4139537920347b27730534023a8dfc
-=======
->>>>>>> 0d76f1304e4139537920347b27730534023a8dfc
-	va_end(arg);
-	return (len);
+        va_start(args, format);
+
+        while (*format)
+        {
+                if (*format == '%')
+                {
+                        format++;
+                        switch (*format)
+                        {
+                        case 'c':
+                                len += _putchar(va_arg(args, int));
+                        break;
+                        case 's':
+                                len += _put_string(va_arg(args, char *));
+                        break;
+                        case '%':
+                                len += _putchar('%');
+                        break;
+                        default:
+                                len += _putchar('%');
+                                len += _putchar(*format);
+                        break;
+                        }
+                }
+                else
+                {
+                        len += _putchar(*format);
+                }
+                format++;
+        }
+        va_end(args);
+        return (len);
 }
