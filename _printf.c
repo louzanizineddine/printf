@@ -65,7 +65,7 @@ int _printf(const char *format, ...)
 	return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%' && format[i + 1])
 		{
 			switch (format[i + 1])
 			{
@@ -92,6 +92,7 @@ int _printf(const char *format, ...)
 			i++;
 		}
 	}
+	_put_char(-1);
 	va_end(arg);
 	return (len);
 }
