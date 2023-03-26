@@ -71,7 +71,7 @@ int _printf(const char *format, ...)
 			{
 				case 'c':
 					_putchar(va_arg(arg, int));
-					/* len++; */
+					len++;
 				break;
 				case  's':
 					str = va_arg(arg, char*);
