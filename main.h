@@ -2,8 +2,9 @@
 #define HEADER_FILE
 
 
-
+int _strlen(char *s);
 int _putchar(char c);
-int _printf(const char * const format, ...);
+int  _put_string(char *str);
+int _printf(const char *format, ...);
 
 #endif

@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-
 /**
  *  _strlen - output function
  *
@@ -15,82 +14,84 @@
  */
 int _strlen(char *s)
 {
-        int len = 0;
+	int len = 0;
 
-        while (*s != '\0')
-        {
-                ++s;
-                len++;
-        }
-        return (len);
+	while (*s != '\0')
+	{
+		++s;
+		len++;
+	}
+	return (len);
 }
 
+/**
+ *  _put_string - print string
+ * Description: prints a string
+ * @str: the input string
+ *
+ * Return: number of string printed
+ */
 
+int  _put_string(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i);
+}
 
 /**
  * _printf - output function
- *
- * @format:  is a character string.
- * The format string is composed of zero or more directives.
- *
  * Description:''Write a function that produces output according to a format.
+ * @format:  is a character string.
  * write output to stdout, the standard output stream
  * Detail. You need to handle the following conversion specifiers:
- * c
- * s
- * %
- * You don’t have to reproduce the buffer handling of the C library printf function
- * You don’t have to handle the flag characters
- * You don’t have to handle field width
- * You don’t have to handle precision
- * You don’t have to handle the length modifiers
- *
- * Return: the number of characters printed
+ *  * Return: the number of characters printed
  * (excluding the null byte used to end output to strings)
  */
-int _printf(const char * const format, ...)
+int _printf(const char *format, ...)
 {
 	va_list arg;
-	int i /* , len, strlen*/ ;
+	int i, len;
 	char *str;
 
-	i = 0;
+	i = len = 0;
 	va_start(arg, format);
-	while (format == NULL)
-	{
-		printf("\n");
-		return 0;
-	}
+	if (format == NULL)
+	return (0);
 	while (format[i])
 	{
-		_putchar(format[i]);
-
-		if (format[i +1] == '%' && format[i + 1] != '\0')
+		if (format[i] == '%' && format[i + 1] != '\0')
 		{
-			switch (format[i + 2])
+			switch (format[i + 1])
 			{
 				case 'c':
-				_putchar(va_arg(arg, int));
+					_putchar(va_arg(arg, int));
+					len++;
 				break;
 				case  's':
-				str = va_arg(arg, char*);
-				if (str == NULL || *str == '\0')
-				{printf("(nill)");
-					break; }
-				_printf(str);
+					str = va_arg(arg, char*);
+					if (str != NULL && *str != '\0')
+						len = len + _put_string(str) - 1;
 				break;
-				case  'i':
-				printf("%i", va_arg(arg, int));
-				break;
-				case 'f':
-				printf("%f", va_arg(arg, double));
+				case '%':
+					_putchar(37);
+					len++;
 				break;
 			}
-			i +=2;
+			i = i + 2;
 		}
-		i++;
+		else
+		{
+			_putchar(format[i]);
+			len++;
+			i++;
+		}
 	}
 	va_end(arg);
-	printf("\n");
-	return 0;
+	return (len);
 }
