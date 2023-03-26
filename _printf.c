@@ -92,7 +92,7 @@ int _printf(const char *format, ...)
 			i++;
 		}
 	}
-	_put_char(-1);
+	_putchar(-1);
 	va_end(arg);
 	return (len);
 }
