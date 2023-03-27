@@ -58,7 +58,7 @@ int  _put_string(char *str)
 int _printf(const char *format, ...)
 {
 va_list args;
-int intg, len = 0;
+int len = 0;
 
 va_start(args, format);
 while (*format)
@@ -66,30 +66,7 @@ while (*format)
 	if (*format == '%')
 	{
 		format++;
-		switch (*format)
-		{
-			case 'c':
-			len += _putchar(va_arg(args, int));
-			break;
-			case 's':
-			len += _put_string(va_arg(args, char *));
-			break;
-			case '%':
-			len += _putchar('%');
-			break;
-			case  'i':
-			intg = va_arg(args, int);
-			len += _print_number(intg);
-			break;
-			case  'd':
-			intg = va_arg(args, int);
-			len += _print_number(intg);
-			break;
-			default:
-			len += _putchar('%');
-			len += _putchar(*format);
-			break;
-		}
+		len += _print_arg(*format, args);
 	}
 	else
 		len += _putchar(*format);
@@ -97,5 +74,34 @@ while (*format)
 }
 	va_end(args);
 	return (len);
+}
+
+/**
+ * _print_arg - handles conversion specifiers for _printf
+ * @arg: conversion specifier
+ * @args: va_list of arguments for conversion
+ * Return: number of characters printed
+ */
+int _print_arg(char arg, va_list args)
+{
+	int num, len;
+
+	switch (arg)
+		{
+			case 'c':
+				_putchar(va_arg(args, int));
+				return (1);
+			case 's':
+				len = _put_string(va_arg(args, char *));
+				return (len);
+			case  'i':
+			case  'd':
+				num = va_arg(args, int);
+				return(_print_number(num));
+			default:
+				_putchar('%');
+				_putchar(arg);
+				return (2);
+		}
 }
 
