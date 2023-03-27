@@ -131,7 +131,7 @@ int _print_arg(char arg, va_list args)
 				return (len);
 			case 'u':
 				unum = va_arg(args, unsigned int);
-				return (_print_unsigned(unum));
+				return (_print_unsign(unum));
 			case 'o':
 				unum = va_arg(args, unsigned int);
 				return (_print_octal(unum));

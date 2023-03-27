@@ -49,11 +49,11 @@ int _print_binary(unsigned int n)
 	return (count);
 }
 /**
- * _print_unsigned - prints an unsigned int
+ * _print_unsign - prints an unsigned int
  * @n: unsigned int to print
  * Return: number of digits printed
  */
-int _print_unsigned(unsigned int n)
+int _print_unsign(unsigned int n)
 {
 	int count = 0;
 
@@ -64,7 +64,7 @@ int _print_unsigned(unsigned int n)
 	}
 
 	if (n / 10)
-		count += _print_unsigned(n / 10);
+		count += _print_unsign(n / 10);
 
 	_putchar((n % 10) + '0');
 	count++;
