@@ -86,6 +86,8 @@ int _print_arg(char arg, va_list args)
 {
 	unsigned int unum;
 	int num, len;
+	void *ptr;
+	unsigned long int addr;
 
 	switch (arg)
 		{
@@ -115,6 +117,12 @@ int _print_arg(char arg, va_list args)
 			case 'X':
 				unum = va_arg(args, unsigned int);
 				return (_print_hex(unum, 1));
+			case 'p':
+				ptr = va_arg(args, void *);
+				addr = (unsigned long int)ptr;
+				len = _put_string("0x");
+				len += _print_long_hex(addr, 0);
+				return (len);
 			default:
 				_putchar('%');
 				_putchar(arg);

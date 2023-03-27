@@ -142,4 +142,43 @@ int _print_hex(unsigned int n, int uppercase)
 
 	return (count);
 }
+/**
+ * _print_long_hex - prints an unsigned integer in hexadecimal format
+ * @n: the unsigned integer to print
+ * @uppercase: a flag to print the letters in uppercase format
+ *
+ * Return: the number of characters printed
+ */
+int _print_long_hex(unsigned long int n, int uppercase)
+{
+	char hex[100];
+	int count = 0, i = 0, temp;
+
+	if (n == 0)
+	{
+		_putchar('0');
+		count++;
+	}
+
+	while (n != 0)
+	{
+		temp = n % 16;
+		if (temp < 10)
+			hex[i] = temp + '0';
+		else if (uppercase)
+			hex[i] = temp - 10 + 'A';
+		else
+			hex[i] = temp - 10 + 'a';
+		n /= 16;
+		i++;
+	}
+
+	while (i-- > 0)
+	{
+		_putchar(hex[i]);
+		count++;
+	}
+
+	return (count);
+}
 
