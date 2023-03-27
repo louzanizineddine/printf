@@ -67,7 +67,6 @@ int _print_arg(char arg, va_list args)
 	unsigned int unum;
 	int num, len;
 	void *ptr;
-	char *strot;
 	unsigned long int addr;
 
 	switch (arg)
@@ -113,8 +112,7 @@ int _print_arg(char arg, va_list args)
 				len = print_rev(va_arg(args, char*));
 				return (len);
 			case 'R':
-				strot = rot13(va_arg(args, char *));
-				len = _put_string(strot);
+				len = _put_string(rot13(va_arg(args, char *)));
 				return (len);
 				default:
 				_putchar('%');
