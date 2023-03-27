@@ -17,7 +17,7 @@ char *rot13(char *str)
 	int i;
 
 	if (str == NULL)
-		return ("(AHYY)");
+		return (NULL);
 
 	for (i = 0; *s != '\0'; s++, i++)
 	{
