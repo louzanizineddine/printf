@@ -119,6 +119,11 @@ int _print_arg(char arg, va_list args)
 				return (_print_hex(unum, 1));
 			case 'p':
 				ptr = va_arg(args, void *);
+				if (ptr == NULL)
+				{
+					_put_string("(nil)");
+					return (5);
+				}
 				addr = (unsigned long int)ptr;
 				len = _put_string("0x");
 				len += _print_long_hex(addr, 0);
