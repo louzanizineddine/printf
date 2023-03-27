@@ -27,3 +27,25 @@ int _print_number(int n)
 	return (num_printed);
 }
 
+/**
+ * print_binary - prints in  binary unsigned int
+ * @n: unsigned int to print
+ * Return: number of digits printed
+ */
+int _print_binary(unsigned int n)
+{
+	int count = 0;
+
+	if (n < 2)
+	{
+		_putchar(n + '0');
+		return (1);
+	}
+
+	count += _print_binary(n / 2);
+	_putchar((n % 2) + '0');
+	count++;
+
+	return (count);
+}
+

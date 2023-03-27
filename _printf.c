@@ -97,7 +97,10 @@ int _print_arg(char arg, va_list args)
 			case  'i':
 			case  'd':
 				num = va_arg(args, int);
-				return(_print_number(num));
+				return (_print_number(num));
+			case 'b':
+				len = _print_binary(va_arg(args, unsigned int));
+				return (len);
 			default:
 				_putchar('%');
 				_putchar(arg);
