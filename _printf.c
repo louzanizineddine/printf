@@ -84,6 +84,7 @@ while (*format)
  */
 int _print_arg(char arg, va_list args)
 {
+	unsigned int unum;
 	int num, len;
 
 	switch (arg)
@@ -101,6 +102,19 @@ int _print_arg(char arg, va_list args)
 			case 'b':
 				len = _print_binary(va_arg(args, unsigned int));
 				return (len);
+			case 'u':
+				unum = va_arg(args, unsigned int);
+				return (_print_unsigned(unum));
+			case 'o':
+				unum = va_arg(args, unsigned int);
+				return (_print_octal(unum));
+			case 'x':
+				unum = va_arg(args, unsigned int);
+				return (_print_hex(unum, 0));
+
+			case 'X':
+				unum = va_arg(args, unsigned int);
+				return (_print_hex(unum, 1));
 			default:
 				_putchar('%');
 				_putchar(arg);
