@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "main.h"
 /**
  * leet- output function
@@ -18,15 +19,27 @@
  *
  * Return:  the pointer to coded strng .
  */
-char *rot13(char *s)
+char *rot13(char *str)
 {
-	char *coded ,*tmp;
+	char *s = str;
+	char *rot13 = malloc(sizeof(char) * _strlen(str) + 1);
+	int i;
 
-	
-	while (*s)
+	if (rot13 == NULL)
+		return (NULL);
+
+	for (i = 0; *s != '\0'; s++, i++)
 	{
-		tmp = s;
-		*coded++ = *(tmp + 13);
+		if ((*s >= 'a' && *s <= 'm') || (*s >= 'A' && *s <= 'M'))
+			rot13[i] = *s + 13;
+		else if ((*s >= 'n' && *s <= 'z') || (*s >= 'N' && *s <= 'Z'))
+			rot13[i] = *s - 13;
+		else
+			rot13[i] = *s;
 	}
-return (coded);
+
+	rot13[i] = '\0';
+
+	return (rot13);
 }
+
