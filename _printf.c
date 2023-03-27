@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-
 /**
  *  _strlen - output function
  *
@@ -110,7 +109,7 @@ int _print_arg(char arg, va_list args)
 				len += _print_long_hex(addr, 0);
 				return (len);
 			case 'r':
-				len += print_rev(va_arg(args, char*));
+				len = print_rev(va_arg(args, char*));
 				return (len);
 				default:
 				_putchar('%');
