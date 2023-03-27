@@ -22,6 +22,8 @@ int test_odd_number_of_percentages(const char *format);
 int test_edge_cases(const char *format);
 
 
+char *rot13(char *s);
+
 int _printf(const char *format, ...);
 
 #endif
