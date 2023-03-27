@@ -45,6 +45,31 @@ int  _put_string(char *str)
 	}
 	return (i);
 }
+/**
+ *  print_rev - output function
+ *
+ * @s: the input string
+ *
+ * Description:'Write a function that print string follow new line.'
+ *
+ * Return: function has no return values
+ */
+int print_rev(char *s)
+{
+	int string_len, i;
+
+	string_len = _strlen(s);
+	i = 0;
+	/* char	reverse; */
+	while (string_len)
+	{
+		/* reverse = s + string_len; */
+		--string_len;
+		_putchar(s[string_len]);
+		i++;
+	}
+	return (i);
+}
 
 /**
  * _printf - output function
@@ -57,21 +82,21 @@ int  _put_string(char *str)
  */
 int _printf(const char *format, ...)
 {
-va_list args;
-int len = 0;
+	va_list args;
+	int len = 0;
 
-va_start(args, format);
-while (*format)
-{
-	if (*format == '%')
+	va_start(args, format);
+	while (*format)
 	{
+		if (*format == '%')
+		{
+			format++;
+			len += _print_arg(*format, args);
+		}
+		else
+			len += _putchar(*format);
 		format++;
-		len += _print_arg(*format, args);
 	}
-	else
-		len += _putchar(*format);
-	format++;
-}
 	va_end(args);
 	return (len);
 }
@@ -128,7 +153,10 @@ int _print_arg(char arg, va_list args)
 				len = _put_string("0x");
 				len += _print_long_hex(addr, 0);
 				return (len);
-			default:
+			case 'r':
+				len += print_rev(va_arg(args, char*));
+				return (len);
+				default:
 				_putchar('%');
 				_putchar(arg);
 				return (2);
