@@ -15,15 +15,15 @@
  */
 int _strlen(char *s)
 {
-        int len = 0;
+	int len;
 
-        while (*s != '\0')
-        {
-                ++s;
-                len++;
-        }
-        return (len);
-
+	len = 0;
+	while (*s != '\0')
+	{
+		++s;
+		len++;
+	}
+	return (len);
 }
 
 /**
@@ -36,89 +36,16 @@ int _strlen(char *s)
 
 int  _put_string(char *str)
 {
-        int i = 0;
+	int i = 0;
 
-        while (str[i] != '\0' && str[i] != '\n')
-        {
-                _putchar(str[i]);
-                i++;
-        }
-        return (i);
-
+	while (str[i] != '\0' && str[i] != '\n')
+	{
+		_putchar(str[i]);
+		i++;
+	}
+	return (i);
 }
-/**
- *  _pring_numbers  - print numbers
- * Description: prints a numbser
- * @n: the input number
- *
- * Return: number printed digits
- */
-int _print_number(int n)
-{
-    int num_printed = 0;
-    unsigned int num_abs = n;
 
-    if (n < 0)
-    {
-        num_printed += _putchar('-');
-        num_abs = -n;
-    }
-
-    if (num_abs / 10)
-    {
-        num_printed += _print_number(num_abs / 10);
-    }
-
-    num_printed += _putchar((num_abs % 10) + '0');
-
-    return num_printed;
-}
-/**
- * test_edge_cases - test some edge cases
- * Description: ptest some edge cases
- * @format: the input string
- *
- * Return: 1 if there is an edge case 0 otherwise
-
-*/
-
-int test_edge_cases(const char *format)
-{
-        if (format == NULL || ((format[0] == '%' && !format[1])))
-        return (1);
-        if ((format[0] == '%' && format[1] == ' ' && !format[2]))
-        return (1);
-
-        return (0);
-}
-/**
- * test_odd_number_of_percentages- test some edge cases
- * Description: if the number of percantages is odd we return -1
- * @format: the input string
- *
- * Return: 1 if there is an edge case 0 otherwise
-
- */
-
-int test_odd_number_of_percentages(const char *format)
-{
-        int number_of_percentage = 0;
-        int i = 0;
-
-        while (format[i] != '\0')
-        {
-                if (format[i] == '%')
-                {
-                        number_of_percentage++;
-                }
-                i++;
-        }
-        if (number_of_percentage % 2 == 1)
-        {
-                return (1);
-        }
-        return (0);
-}
 /**
  * _printf - output function
  * Description:''Write a function that produces output according to a format.
@@ -130,47 +57,45 @@ int test_odd_number_of_percentages(const char *format)
  */
 int _printf(const char *format, ...)
 {
-        va_list args;
-        int intg, len = 0;
+va_list args;
+int intg, len = 0;
 
-        va_start(args, format);
-
-        while (*format)
-        {
-                if (*format == '%')
-                {
-                        format++;
-                        switch (*format)
-                        {
-				case 'c':
-				len += _putchar(va_arg(args, int));
-				break;
-				case 's':
-				len += _put_string(va_arg(args, char *));
-				break;
-				case '%':
-				len += _putchar('%');
-				break;
-				case  'i':
-				intg = va_arg(args, int);
-				len += _print_number(intg);
-				break;
-				case  'd':
-				intg = va_arg(args, int);
-				len += _print_number(intg);
-				break;
-				default:
-				len += _putchar('%');
-				len += _putchar(*format);
-				break;
-			}
-                }
-                else
-                {
-                        len += _putchar(*format);
-                }
-                format++;
-        }
-        va_end(args);
-        return (len);
+va_start(args, format);
+while (*format)
+{
+	if (*format == '%')
+	{
+		format++;
+		switch (*format)
+		{
+			case 'c':
+			len += _putchar(va_arg(args, int));
+			break;
+			case 's':
+			len += _put_string(va_arg(args, char *));
+			break;
+			case '%':
+			len += _putchar('%');
+			break;
+			case  'i':
+			intg = va_arg(args, int);
+			len += _print_number(intg);
+			break;
+			case  'd':
+			intg = va_arg(args, int);
+			len += _print_number(intg);
+			break;
+			default:
+			len += _putchar('%');
+			len += _putchar(*format);
+			break;
+		}
+	}
+	else
+		len += _putchar(*format);
+	format++;
 }
+	va_end(args);
+	return (len);
+}
+
