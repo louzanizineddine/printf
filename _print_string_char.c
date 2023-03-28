@@ -25,8 +25,13 @@ int  _put_S(char *str)
 	{
 		c = str[i];
 		if (c < 32 || c >= 127)
-			printed += _putchar('\\') + _putchar('x') 
-				+ _print_hex((unsigned char)c, 1);
+		{
+			printed += _putchar('\\') + _putchar('x');
+			if (c < 16)
+				printed += _putchar('0');
+
+			printed += _print_hex((unsigned char)c, 1);
+		}
 		else
 			printed += _putchar(c);
 	}
