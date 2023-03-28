@@ -26,8 +26,9 @@ int main(void)
     printf("Unsigned:[%u]\n", ui);
     _printf("Unsigned octal:[%o]\n", ui);
     printf("Unsigned octal:[%o]\n", ui);
-    printf("real binary %b\n", 0);
+    /*printf("real binary %b\n", 0);
     _printf("fake binary %b woow \n",13241234 );
+    */
     _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
     printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
     _printf("Character:[%c]\n", 'H');
@@ -40,7 +41,6 @@ int main(void)
     len2 = printf("Percent:[%%]\n");
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
-    _printf("Unknown:[%R]\n", "reverse");
-    printf("Unknown:[%R]\n" , "reverse");
+    _printf("Unknown:[%R]\n", "");
     return (0);
 }

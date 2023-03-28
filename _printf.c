@@ -67,7 +67,7 @@ int _print_arg(char arg, va_list args)
 	unsigned int unum;
 	int num, len;
 	void *ptr;
-	char *str;
+	char *str, *temp;
 	unsigned long int addr;
 
 	switch (arg)
@@ -113,10 +113,15 @@ int _print_arg(char arg, va_list args)
 				len = print_rev(va_arg(args, char*));
 				return (len);
 			case 'R':
-				str = rot13(va_arg(args, char *));
-				len = _put_string(str);
-				free(str);
-				return (len);
+				temp = va_arg(args , char*);
+				if (temp != NULL)
+				{
+					str = rot13(temp);
+					len = _put_string(str);
+					free(str);
+					return (len);
+				}
+				return (0);
 			default:
 				_putchar('%');
 				_putchar(arg);
