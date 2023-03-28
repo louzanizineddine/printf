@@ -19,9 +19,10 @@
 
 int  _put_string(char *str)
 {
-        int i = 0;
-
-        while (str[i] != '\0')
+        int i;
+	
+	i = 0;
+        while (str[i] != '\0' && str[i] != '\n')
         {
 		if ((0 < str[i] && str[i] < 32) || str[i] >= 127)
 		{
@@ -33,6 +34,8 @@ int  _put_string(char *str)
                 _putchar(str[i]);
                 i++;
         }
+	if (str[i] == '\n')
+		_putchar('\n');
         return (i);
 }
 

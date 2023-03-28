@@ -76,10 +76,12 @@ int _print_arg(char arg, va_list args)
 				_putchar(va_arg(args, int));
 				return (1);
 			case 's':
-				len = _put_string(va_arg(args, char *));
+				str = va_arg(args, char*);
+				len = _put_string(str);
 				return (len);
 			case 'S':
-				len = _put_string(va_arg(args, char *));
+				str = va_arg(args, char*);
+				len = _put_string(str);
 				return (len);
 			case  'i':
 			case  'd':
