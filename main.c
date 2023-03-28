@@ -13,34 +13,56 @@ int main(void)
     int len2;
     unsigned int ui;
     void *addr;
+    char *str = "this is text to be ecrypted !! or is it??\n";
+    char *str2 = "this is text to be ecrypted !! or is it??\n";
 
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
     ui = (unsigned int)INT_MAX + 1024;
     addr = (void *)0x7ffe637541f0;
+
     _printf("Length:[%d, %i]\n", len, len);
     printf("Length:[%d, %i]\n", len2, len2);
+
     _printf("Negative:[%d]\n", -762534);
     printf("Negative:[%d]\n", -762534);
+
     _printf("Unsigned:[%u]\n", ui);
     printf("Unsigned:[%u]\n", ui);
+
     _printf("Unsigned octal:[%o]\n", ui);
     printf("Unsigned octal:[%o]\n", ui);
-    /*printf("real binary %b\n", 0);
+    
+    /* printf("real binary %b\n", 0); */
     _printf("fake binary %b woow \n",13241234 );
-    */
+    
     _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
     printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
+    
     _printf("Character:[%c]\n", 'H');
     printf("Character:[%c]\n", 'H');
+    
     _printf("String:[%s]\n", "I am a string !");
     printf("String:[%s]\n", "I am a string !");
+    
     _printf("Address:[%p]\n", addr);
     printf("Address:[%p]\n", addr);
+    
     len = _printf("Percent:[%%]\n");
     len2 = printf("Percent:[%%]\n");
+    
     _printf("Len:[%d]\n", len);
     printf("Len:[%d]\n", len2);
-    _printf("Unknown:[%R]\n", "");
+
+    _printf("Unknown:[%r]\n", "reverse");
+    /* printf("Unknown:[%R]\n" , "reverse");*/
+
+    _printf("Unknown:[%R]\n", "ENCRIPTION");
+
+    len  =  printf("ENCRYPTION :[%s]\n",str2);
+    len2 = _printf("ENCRYPTION :[%R]\n",str);
+    printf("Len:[%d]\n", len);
+    _printf("Len:[%d]\n", len2);
+
     return (0);
 }

@@ -14,10 +14,10 @@ char *rot13(char *str)
 {
 	char *s = str;
 	char *rot13 = malloc(sizeof(char) * _strlen(str) + 1);
- 	int i;
+	int i;
 
 	if (str == NULL)
-		return (NULL);
+		return ("(AHYY)");
 
 	for (i = 0; *s != '\0'; s++, i++)
 	{
