@@ -11,14 +11,13 @@ int main(void)
 {
     int len;
     int len2;
-    len = _printf("%s", NULL);
-    printf("\n");
-    len2 = printf("%s", NULL);
-    printf("\nmy len = %d, linux len = %d\n", len , len2 );
-   /* unsigned int ui;
+     unsigned int ui;
     void *addr;
     char *str111  = "this is text to be ecrypted !! or is it??\n";
     char *str2 = "this is text to be ecrypted !! or is it??\n";
+
+    _printf("\nof course \na;sdlkfj |n");
+
 
     len = _printf("Let's try to printf a simple sentence.\n");
     len2 = printf("Let's try to printf a simple sentence.\n");
@@ -79,6 +78,5 @@ int main(void)
      printf("String:[%s]\n", "I am a string !");
 
     _printf("%S\n", "Best\nSchool");
-    */
     return (0);
 }

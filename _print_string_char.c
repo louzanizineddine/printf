@@ -1,6 +1,39 @@
 #include "main.h"
 
 /**
+ *  _put_S - print string
+ * Description: prints a string
+ * 
+ * @str: the input string
+ *
+ * Handle the following custom conversion specifier:
+ * S - prints the string.
+ * Non printable characters (0 < ASCII value < 32 or >= 127)
+ * are printed this way: \x,
+ * followed by the ASCII code value in hexadecimal
+ * (upper case - always 2 characters)
+ *
+ * Return: number of string printed
+ */
+
+int  _put_S(char *str)
+{
+	int i, len, printed = 0;
+	char c;
+
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		c = str[i];
+		if (c < 32 || c >= 127)
+			printed += _putchar('\\') + _putchar('x') 
+				+ _print_hex((unsigned char)c, 1);
+		else
+			printed += _putchar(c);
+	}
+	len = i + printed;
+	return  (len);
+}
+/**
  *  _put_string - print string
  * 
  * Description: prints a string
@@ -38,7 +71,6 @@ int  _put_string(char *str)
 		_putchar('\n');
         return (i);
 }
-
 /**
  *  print_rev - output function
  *

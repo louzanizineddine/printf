@@ -5,6 +5,7 @@
 int _strlen(char *s);
 
 int _putchar(char c);
+int  _put_S(char *str);
 int  _put_string(char *str);
 int print_rev(char *s);
 

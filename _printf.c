@@ -78,7 +78,6 @@ int _print_arg(char arg, va_list args)
 				_putchar(va_arg(args, int));
 				return (1);
 			case 's':
-			case 'S':
 				str = va_arg(args, char*);
 				if (str == NULL)
 				{
@@ -87,6 +86,16 @@ int _print_arg(char arg, va_list args)
 				}
 				len = _put_string(str);
 				return (len);
+			case 'S':
+				str = va_arg(args, char*);
+				if (str == NULL)
+				{
+					_put_string("(null)");
+					return (6);
+				}
+				len = _put_S(str);
+				return (len);
+
 			case  'i':
 			case  'd':
 				num = va_arg(args, int);
