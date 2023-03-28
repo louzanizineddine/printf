@@ -41,6 +41,8 @@ int _printf(const char *format, ...)
 	int len = 0;
 
 	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && !format[1]))
+		return (-1);
 	while (*format)
 	{
 		if (*format == '%')
@@ -122,6 +124,9 @@ int _print_arg(char arg, va_list args)
 				len = _put_string(str);
 				free(str);
 				return (len);
+			case '%':
+				_putchar('%');
+				return (1);
 			default:
 				_putchar('%');
 				_putchar(arg);
