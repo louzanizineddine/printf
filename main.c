@@ -64,5 +64,14 @@ int main(void)
     printf("Len:[%d]\n", len);
     _printf("Len:[%d]\n", len2);
 
+
+
+
+    _printf("String:[%s\n", "I am a string !");
+    printf("String:[%s]\n", "I am a string !");
+
+/* Non printable characters (0 < ASCII value < 32 or >= 127) are printed this way: \x  */
+    _printf("%S\n", "Best\nSchool");
+
     return (0);
 }

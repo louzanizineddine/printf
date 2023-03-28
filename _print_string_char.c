@@ -2,8 +2,17 @@
 
 /**
  *  _put_string - print string
+ * 
  * Description: prints a string
+ * 
  * @str: the input string
+ *
+ * Handle the following custom conversion specifier:
+ * S - prints the string.
+ * Non printable characters (0 < ASCII value < 32 or >= 127)
+ * are printed this way: \x,
+ * followed by the ASCII code value in hexadecimal
+ * (upper case - always 2 characters)
  *
  * Return: number of string printed
  */
@@ -14,6 +23,13 @@ int  _put_string(char *str)
 
         while (str[i] != '\0')
         {
+		if ((0 < str[i] && str[i] < 32) || str[i] >= 127)
+		{
+			_putchar(92);
+			_putchar('x');
+			_print_octal(str[i + 1]);
+			i++;
+		}
                 _putchar(str[i]);
                 i++;
         }
