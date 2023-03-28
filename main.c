@@ -11,9 +11,9 @@ int main(void)
 {
     int len;
     int len2;
-    len = _printf("%c %%%", 'd');
+    len = _printf("%s", NULL);
     printf("\n");
-    len2 = printf("%c %%%", 'd');
+    len2 = printf("%s", NULL);
     printf("\nmy len = %d, linux len = %d\n", len , len2 );
    /* unsigned int ui;
     void *addr;
