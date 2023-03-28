@@ -1,9 +1,13 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
+
+#include <stdio.h>
+#include <stdlib.h>
 #include <stdarg.h>
 
 int _strlen(char *s);
 
+int _printf(const char *format, ...);
 int _putchar(char c);
 int  _put_S(char *str);
 int  _put_string(char *str);
