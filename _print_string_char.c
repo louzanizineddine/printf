@@ -27,7 +27,8 @@ int  _put_string(char *str)
 		{
 			_putchar(92);
 			_putchar('x');
-			_print_octal(str[i + 1]);
+			_putchar('0');
+			_print_hex(str[i], 1);
 			i++;
 		}
                 _putchar(str[i]);
