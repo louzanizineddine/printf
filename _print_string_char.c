@@ -73,7 +73,11 @@ int  _put_string(char *str)
                 i++;
         }
 	if (str[i] == '\n')
+	{
 		_putchar('\n');
+		i++;
+	}
+
         return (i);
 }
 /**
